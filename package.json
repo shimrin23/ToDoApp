@@ -1,0 +1,23 @@
+{
+  "name": "todoapp",
+  "version": "1.0.0",
+  "description": "manage tasks ",
+  "homepage": "https://github.com/shimrin23/ToDoApp#readme",
+  "bugs": {
+    "url": "https://github.com/shimrin23/ToDoApp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shimrin23/ToDoApp.git"
+  },
+  "license": "ISC",
+  "author": "shimrin",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

@@ -1,0 +1,36 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment files
+.env
+.env.*.local
+.local.env
+
+# Build / output
+dist/
+build/
+out/
+coverage/
+coverage/*
+.tmp/
+.cache/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# OS / editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Misc
+*.tgz
+node_repl_history
