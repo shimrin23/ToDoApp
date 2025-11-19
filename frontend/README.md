@@ -1,70 +1,217 @@
-# Getting Started with Create React App
+# ToDo App (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small, clean, and easy-to-read frontend for a ToDo application built with React — created as a learning project to study monostack technologies and the basic full-stack ideas. The UI focuses on the common CRUD flows for tasks and integrates with a simple backend API.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔷 Quick overview
 
-### `npm start`
+* **Purpose:** Learning project to practice frontend React and how it connects to a backend (the “mono/monostack” learning stack).
+* **What it does:** Create, read, update (mark complete), and delete tasks.
+* **Project location:** `ToDoApp/frontend` (this README is for the frontend).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Features
 
-### `npm test`
+* Add new tasks with a title (and optional details).
+* View all tasks — filters for `all`, `active`, and `completed`.
+* Mark tasks as completed / toggle completed state.
+* Edit or delete tasks.
+* Simple, responsive UI suitable for extension.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 💻 Tech stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **React** (Create React App)
+* **Axios** — HTTP client for API calls
+* **CSS3 / Flexbox** — basic styling (or your preferred styling solution)
+* Optional: React Router (if you add routing), localStorage fallback for offline/testing.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> Note: This frontend is written to talk to a backend API. For a monostack learning setup you might combine this with a Node/Express + MongoDB backend (MERN-style), but any RESTful backend works.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🚀 Getting started (development)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Node.js (v14+ recommended)
+* npm (comes with Node) or yarn
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Install & run
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clone your repo:
 
-## Learn More
+```bash
+git clone https://github.com/shimrin23/ToDoApp.git
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Move into the frontend directory:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+cd ToDoApp/frontend
+```
 
-### Code Splitting
+3. Install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm install
+# or
+yarn
+```
 
-### Analyzing the Bundle Size
+4. Create a `.env` file in the `frontend` directory and set the backend API URL:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```env
+REACT_APP_API_URL=http://localhost:5000/api
+```
 
-### Making a Progressive Web App
+5. Run the app:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm start
+# or
+yarn start
+```
 
-### Advanced Configuration
+Open [http://localhost:3000](http://localhost:3000) — the app will reload on code changes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Available scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* `npm start` — runs the app in development mode ([http://localhost:3000](http://localhost:3000)).
+* `npm test` — runs the test runner in interactive watch mode.
+* `npm run build` — builds the app for production into `build/`.
+* `npm run eject` — **one-way** operation to eject CRA configs (only if you need to customize build toolchain).
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📡 API (example contract)
+
+This frontend expects a RESTful API with endpoints like the examples below. Adjust to match your backend.
+
+* **GET /tasks** — get list of tasks
+  Response example:
+
+  ```json
+  [
+    { "_id": "1", "title": "Buy milk", "completed": false, "createdAt": "2025-11-20T..." },
+    { "_id": "2", "title": "Read book", "completed": true, "createdAt": "2025-11-19T..." }
+  ]
+  ```
+
+* **POST /tasks** — create a new task
+  Request body:
+
+  ```json
+  { "title": "New task" }
+  ```
+
+  Response: created task object.
+
+* **PATCH /tasks/:id** — update a task (e.g., toggle completed)
+  Request body (partial update):
+
+  ```json
+  { "completed": true }
+  ```
+
+* **DELETE /tasks/:id** — delete a task
+
+### Example curl
+
+```bash
+# create
+curl -X POST $REACT_APP_API_URL/tasks -H "Content-Type: application/json" -d '{"title":"Test task"}'
+
+# list
+curl $REACT_APP_API_URL/tasks
+
+# update
+curl -X PATCH $REACT_APP_API_URL/tasks/<id> -H "Content-Type: application/json" -d '{"completed":true}'
+
+# delete
+curl -X DELETE $REACT_APP_API_URL/tasks/<id>
+```
+
+---
+
+## ⚙️ Frontend folder structure (suggested)
+
+```
+frontend/
+├─ src/
+│  ├─ components/     # TaskItem, TaskList, TaskForm, Header, Footer...
+│  ├─ pages/          # optional: Home, About, Settings
+│  ├─ services/       # api.js (axios instance + API helper functions)
+│  ├─ styles/         # css or scss files
+│  ├─ App.js
+│  └─ index.js
+├─ public/
+├─ .env
+└─ package.json
+```
+
+---
+
+## Tips & suggestions (to practice monostack ideas)
+
+* Add a small Node/Express backend that stores tasks in MongoDB — this completes the “mono/monostack” learning loop.
+* Add authentication (JWT) so each user has their own task list.
+* Add sorting, due dates, and local offline sync (localStorage fallback).
+* Add unit tests for components using React Testing Library + Jest.
+
+---
+
+## Troubleshooting
+
+* If API calls fail, confirm `REACT_APP_API_URL` is correct and backend server is running.
+* If `npm start` fails with port error, maybe another process uses port 3000 — try `PORT=3001 npm start`.
+* For CORS errors, enable CORS on the backend (e.g., `cors` middleware in Express).
+
+---
+
+## Contributing
+
+1. Fork the repo and create a feature branch: `git checkout -b feat/your-feature`
+2. Commit your changes: `git commit -m "feat: add ..."`
+3. Push and open a pull request.
+
+Be descriptive in PRs and include screenshots for UI changes.
+
+---
+
+## Screenshots & demo
+
+*(Add screenshots or a short GIF here to show the UI — helpful for README readers.)*
+
+---
+
+## License
+
+Use whichever license you prefer. Example:
+
+```
+MIT License
+```
+
+---
+
+## Contact / Author
+
+* shimrin — (add your email or GitHub profile link if you want contact details)
+
+---
+
+### Final notes
+
+This README is optimized for clarity and learning. If you want, I can:
+
+* Expand the backend README to match (Node/Express + MongoDB).
+* Create the `services/api.js` axios wrapper example.
+* Produce a screenshot-ready sample or a `README.md` file you can drop straight into `frontend/`.
+
+Would you like me to generate the `api.js` service file and a short example `TaskList` React component next?
